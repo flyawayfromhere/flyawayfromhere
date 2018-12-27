@@ -7,6 +7,5 @@ php-fpm
 mysql (percona)
 
 
-1. `uname -a` Which kernel my OS have
-
-Linux ns6973245 4.20.0-1.el7.elrepo.x86_64
+1. `uname -a` Which kernel my OS have\
+    Linux ns6973245 4.20.0-1.el7.elrepo.x86_64
