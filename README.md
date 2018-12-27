@@ -87,6 +87,65 @@ exit;
 [Reason](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/tuning_and_optimizing_red_hat_enterprise_linux_for_oracle_9i_and_10g_databases/chap-oracle_9i_and_10g_tuning_guide-setting_file_handles)
 
 ## Network tuning
-`/etc/sysctl.d/02-netio.conf`
+Create `/etc/sysctl.d/02-netio.conf`
+
+```
+### Kernel settings for TCP
+
+# Allowed local port range
+net.ipv4.ip_local_port_range = 1024 65535
+
+net.core.somaxconn = 65536
+net.core.netdev_max_backlog = 65536
+
+
+# enable recycling and fast reuse of TCP TIME_WAIT sockets
+net.ipv4.tcp_tw_recycle = 1
+net.ipv4.tcp_tw_reuse = 1
+
+# decrease TCP FIN_WAIT timeout
+net.ipv4.tcp_fin_timeout = 10
+
+# decrease TCP keepalive from 2 hours to 30 minutes
+net.ipv4.tcp_keepalive_time = 30
+
+# increase TCP SYN backlog to 65536
+net.ipv4.tcp_max_syn_backlog = 65536
+
+net.ipv4.tcp_retries2=4
+
+net.core.netdev_max_backlog = 250000
+net.core.optmem_max = 16777216
+net.core.rmem_default =  16777216
+net.core.wmem_default =  16777216
+net.core.rmem_max =  16777216
+net.core.wmem_max =  16777216
+
+net.ipv4.conf.all.arp_filter = 1
+net.ipv4.conf.all.arp_ignore = 1
+
+net.ipv4.neigh.default.gc_thresh1 = 30000
+net.ipv4.neigh.default.gc_thresh2 = 32000
+net.ipv4.neigh.default.gc_thresh3 = 32768
+net.ipv4.neigh.default.gc_interval = 2000000
+
+net.ipv4.tcp_adv_win_scale = 2
+net.ipv4.tcp_low_latency = 1
+
+net.ipv4.tcp_mem = 16777216 16777216 16777216
+net.ipv4.tcp_reordering = 3
+net.ipv4.tcp_rmem = 4096 87380 16777216
+net.ipv4.tcp_wmem = 4096 87380 16777216
+net.ipv4.tcp_sack = 0
+net.ipv4.tcp_timestamps = 0
+net.ipv4.tcp_window_scaling = 1
+
+net.ipv4.tcp_sack = 0
+net.ipv4.tcp_dsack = 0
+net.ipv4.tcp_fack = 0
+
+net.ipv4.tcp_slow_start_after_idle = 0
+
+```
 
 
